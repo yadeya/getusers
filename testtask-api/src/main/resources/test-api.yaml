@@ -1,0 +1,62 @@
+openapi: "3.0.2"
+
+info:
+  description: This is a simple API
+  version: 1.0.0
+  title: Simple User API
+  # put the contact info for your development or API team
+  contact:
+    email: you@your-company.com
+
+servers:
+  - url: http://localhost:8080/
+
+tags:
+  - name: Test task
+    description: "Implement method getUsers"
+
+paths:
+  /users:
+    get:
+      tags:
+        - Test task
+      summary: "get users"
+      description: "Aggregating users data from multiple databases"
+      operationId: getUsers
+      #      parameters:
+      responses:
+        200:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        404:
+          description: Error/Not found response
+          content:
+            text/plain:
+              schema:
+                title: Error/Not found response
+                type: string
+                example: Error/Not found response
+
+components:
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: example-user-id-1
+        username:
+          type: string
+          example: user-1
+        name:
+          type: string
+          example: User
+        surname:
+          type: string
+          example: Userenko
